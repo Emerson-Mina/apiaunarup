@@ -27,3 +27,12 @@ CREATE TABLE users (
   -- 'ON DELETE SET NULL' significa que si se elimina un rol, 'role_id' se establece en NULL en la tabla 'users'
   FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE SET NULL
 );
+-- Agrega las columnas inicialmente permitiendo NULL
+ALTER TABLE users
+  ADD first_name VARCHAR(255) NULL AFTER password,
+  ADD last_name VARCHAR(255) NULL AFTER first_name,
+  ADD birth_date DATE NULL AFTER last_name,
+  ADD academic_program VARCHAR(255) NULL AFTER birth_date,
+  ADD semester INT NULL AFTER academic_program,
+  ADD phone_number VARCHAR(15) NULL AFTER semester,
+  ADD institutional_email VARCHAR(255) UNIQUE NULL AFTER phone_number;
